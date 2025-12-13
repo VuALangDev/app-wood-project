@@ -1,0 +1,898 @@
+/* ========== RESET & BASE ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  background-color: #f5f5f5;
+}
+
+.container {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding: 10px;
+  
+}
+
+/* ========== HEADER ========== */
+.header-app {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 15px;
+  background: linear-gradient(to right, #2c80ff, #0052cc);
+  height: 60px;
+  padding: 0 15px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 3px 10px rgba(0, 82, 204, 0.2);
+}
+
+.app-title p {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.user-icon {
+  font-size: 20px;
+}
+
+.username {
+  font-weight: 500;
+}
+
+/* ========== METER SELECTION (COMBOBOX) ========== */
+.meter-selection-section {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 15px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: visible; /* QUAN TRỌNG: thay từ hidden thành visible */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.meter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: linear-gradient(to right, #00b894, #00a085);
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.meter-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.meter-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
+  transition: all 0.2s;
+  min-width: 100px;
+  justify-content: space-between;
+}
+
+.meter-dropdown-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.selected-meter-display {
+  font-weight: bold;
+  color: #ffeb3b;
+  font-size: 16px;
+}
+
+.dropdown-icon {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #ffeb3b;
+}
+
+.meter-dropdown-menu {
+  position: absolute;
+  top: calc(100% - 5px);
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.meter-option {
+  background-color: white;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.meter-option:hover {
+  background-color: #e8f4ff;
+  border-color: #2c80ff;
+  transform: translateY(-2px);
+}
+
+.meter-option.active {
+  background: linear-gradient(to bottom, #00b894, #00a085);
+  color: white;
+  border-color: #008b74;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 184, 148, 0.3);
+}
+
+.meter-option:active {
+  transform: scale(0.95);
+}
+
+.meter-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.meter-dropdown-menu::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.meter-dropdown-menu::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+/* ========== ĐẦU GỖ (2 HÀNG) ========== */
+.header-app-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.header-app-number-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  background-color: #333;
+  padding: 1px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.header-app-number-row:nth-child(2) {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.dau-item {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 6px;
+  min-height: 50px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  user-select: none;
+}
+
+.dau-item:hover {
+  background-color: #e8f4ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dau-item.active {
+  background: linear-gradient(to bottom, #2c80ff, #0052cc);
+  color: white;
+  border-color: #0052cc;
+  box-shadow: 0 4px 12px rgba(44, 128, 255, 0.3);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.dau-item:active {
+  transform: scale(0.95);
+  transition: transform 0.1s;
+}
+
+/* ========== CALCULATOR (3 CỘT) ========== */
+.calculator-section {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+}
+
+.calculator-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.calculator-columns {
+  display: flex;
+  flex: 1;
+}
+
+.calc-part-1,
+.calc-part-2,
+.calc-part-3 {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.calc-part-1 {
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+}
+
+.calc-part-2 {
+  background-color: #ffffff;
+  border-right: 1px solid #dee2e6;
+}
+
+.calc-part-3 {
+  background-color: #f8f9fa;
+}
+
+.calc-part-1 .calc-title,
+.calc-part-2 .calc-title,
+.calc-part-3 .calc-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #2c80ff;
+  text-align: center;
+  background-color: #e8f4ff;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.calc-part-2 .calc-title {
+  border-bottom-color: #00c853;
+  background-color: #e8f8e8;
+}
+
+.calc-part-3 .calc-title {
+  border-bottom-color: #ff6b6b;
+  background-color: #ffe8e8;
+}
+
+/* Khuôn list */
+.khuon-list {
+  flex: 1;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 8px;
+  padding: 0 5px;
+}
+
+.khuon-item {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  min-height: 35px;
+  height: 100%;
+}
+
+/* Input số lượng */
+.quantity-inputs {
+  flex: 1;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 8px;
+  padding: 0 5px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.quantity-input {
+  width: 90px !important;
+  height: 35px !important;
+  padding: 8px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+  background-color: #fff;
+  transition: all 0.2s;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.quantity-input:focus {
+  outline: none;
+  border-color: #2c80ff;
+  box-shadow: 0 0 0 3px rgba(44, 128, 255, 0.1);
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Kết quả */
+.result-list {
+  flex: 1;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 8px;
+  padding: 0 5px;
+}
+
+.result-item {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  min-height: 35px;
+  height: 100%;
+}
+
+.result-value {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Đảm bảo các ô thẳng hàng */
+.khuon-list,
+.quantity-inputs,
+.result-list {
+  grid-auto-rows: 1fr;
+}
+
+.khuon-item,
+.quantity-input,
+.result-item {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========== TỔNG CÁC ĐẦU GỖ ========== */
+.dau-totals-section {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 15px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.total-header-row {
+  background: linear-gradient(to right, #2c80ff, #0052cc);
+  padding: 12px;
+  text-align: center;
+}
+
+.total-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dau-totals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background-color: #f0f0f0;
+  padding: 1px;
+}
+
+.dau-total-column {
+  background-color: white;
+  padding: 10px 5px;
+  text-align: center;
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dau-total-header {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c80ff;
+  margin-bottom: 8px;
+}
+
+.dau-total-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff6b6b;
+  background-color: #fff5f5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ffcccc;
+  min-width: 80px;
+  text-align: center;
+}
+
+.empty-column {
+  visibility: hidden;
+}
+
+.grand-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: linear-gradient(to right, #00b894, #00a085);
+  color: white;
+  border-top: 2px solid #008b74;
+  font-weight: bold;
+}
+
+.grand-total-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.grand-total-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 374px) {
+  .header-app-container {
+    gap: 6px;
+  }
+  
+  .header-app-number-row {
+    gap: 6px;
+  }
+  
+  .dau-item {
+    min-height: 45px;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  
+  .dau-item.active {
+    font-size: 18px;
+  }
+  
+  .khuon-item,
+  .result-item {
+    min-height: 30px;
+    font-size: 14px;
+  }
+  
+  .quantity-input {
+    width: 80px !important;
+    height: 30px !important;
+    font-size: 14px;
+    padding: 6px;
+  }
+  
+  .meter-dropdown-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .meter-title,
+  .selected-meter-display {
+    font-size: 14px;
+  }
+  
+  .dau-total-column {
+    padding: 8px 3px;
+    min-height: 60px;
+  }
+  
+  .dau-total-header {
+    font-size: 14px;
+  }
+  
+  .dau-total-value {
+    font-size: 16px;
+    padding: 6px 8px;
+    min-width: 60px;
+  }
+  
+  .grand-total-label {
+    font-size: 14px;
+  }
+  
+  .grand-total-value {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 320px) {
+  .dau-item {
+    min-height: 42px;
+    font-size: 15px;
+  }
+  
+  .dau-item.active {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 768px) {
+  .header-app-container {
+    max-width: 500px;
+  }
+  
+  .dau-item {
+    min-height: 55px;
+    font-size: 20px;
+  }
+  
+  .dau-item.active {
+    font-size: 22px;
+  }
+  
+  .header-app-number-row {
+    gap: 10px;
+  }
+  
+  .dau-totals-section {
+    max-width: 500px;
+  }
+}
+
+@media (min-height: 700px) {
+  .calc-part-1,
+  .calc-part-2,
+  .calc-part-3 {
+    min-height: 450px;
+  }
+  
+  .khuon-item,
+  .result-item {
+    min-height: 40px;
+  }
+  
+  .quantity-input {
+    height: 40px !important;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .calc-part-1,
+  .calc-part-2,
+  .calc-part-3 {
+    min-height: 300px;
+  }
+  
+  .khuon-item,
+  .quantity-input,
+  .result-item {
+    min-height: 28px;
+  }
+  
+  .quantity-input {
+    height: 28px !important;
+    padding: 5px;
+  }
+}
+/* Kết quả chỉ hiện số */
+.result-item {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c3e50;
+  min-height: 35px;
+  height: 100%;
+}
+
+/* Tổng các đầu */
+.dau-total-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff6b6b;
+  background-color: #fff5f5;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ffcccc;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* Tổng chung */
+.grand-total-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ff6b6b;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+/* File: src/components/menu/TrangTinhGo.css */
+
+/* ========== METER TABS ========== */
+.meter-tabs-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 15px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.meter-tabs-scroll {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.meter-tab {
+  padding: 10px 0px;
+  background: white;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #495057;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-size: 1rem;
+  min-width: 10%;
+  text-align: center;
+}
+
+.meter-tab:hover {
+  background: #e8f4ff;
+  border-color: #2c80ff;
+  transform: translateY(-2px);
+}
+
+.meter-tab.active {
+  background: linear-gradient(to bottom, #2c80ff, #0052cc);
+  color: white;
+  border-color: #0052cc;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(44, 128, 255, 0.3);
+}
+
+/* Hide scrollbar nhưng vẫn scroll được */
+.meter-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========== RESET BUTTON ========== */
+.reset-section {
+  width: 100%;
+  max-width: 500px;
+  margin: 15px auto;
+  text-align: center;
+}
+
+.reset-btn {
+  background: linear-gradient(to right, #ff6b6b, #ee5a52);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 3px 10px rgba(255, 107, 107, 0.2);
+}
+
+.reset-btn:hover {
+  background: linear-gradient(to right, #ff5252, #e74c3c);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+}
+
+/* ========== METER TOTAL ROW ========== */
+.meter-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: linear-gradient(to right, #00b894, #00a085);
+  color: white;
+  border-top: 2px solid #008b74;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.meter-total-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.meter-total-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== UPDATE GRAND TOTAL ROW ========== */
+.grand-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: linear-gradient(to right, #2c80ff, #0052cc);
+  color: white;
+  border-top: 2px solid #0052cc;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.grand-total-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.grand-total-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffeb3b;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 374px) {
+  .meter-tab {
+    padding: 10px 15px;
+    font-size: 14px;
+    min-width: 60px;
+  }
+  
+  .meter-total-label,
+  .grand-total-label {
+    font-size: 14px;
+  }
+  
+  .meter-total-value {
+    font-size: 18px;
+  }
+  
+  .grand-total-value {
+    font-size: 20px;
+  }
+}
+
+/* Landscape mode */
+@media (max-height: 500px) and (orientation: landscape) {
+  .meter-tabs-container {
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .meter-tab {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+/* File: TrangTinhGo.css */
+
+/* ========== TỔNG TẤT CẢ CÁC MÉT ========== */
+.all-meters-total {
+  margin-top: 15px;
+  border: 2px solid #ff6b6b;
+}
+
+.all-meters-total .total-header-row {
+  background: linear-gradient(to right, #ff6b6b, #ee5a52);
+}
+
+.all-meters-total .dau-total-header {
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.all-meters-value {
+  background-color: #fff5f5 !important;
+  border-color: #ffcccc !important;
+  color: #ff6b6b !important;
+  font-weight: bold;
+}
+
+/* ========== SPACING ========== */
+.dau-totals-section {
+  margin-bottom: 15px;
+}
+
+.dau-totals-section:last-child {
+  margin-bottom: 30px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 374px) {
+  .dau-totals-section {
+    margin-bottom: 10px;
+  }
+  
+  .all-meters-total {
+    border-width: 1px;
+  }
+}
