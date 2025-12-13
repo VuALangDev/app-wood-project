@@ -218,7 +218,7 @@ export const TrangTinhGo = () => {
             </div>
             
             <div className="calc-part-2">
-              <div className="calc-title">SỐ LƯỢNG ({selectedMeterTab}m)</div>
+              <div className="calc-title">S. LƯỢNG ({selectedMeterTab}m)</div>
               <div className="quantity-inputs">
                 {khuonData.map((khuonNumber) => (
                   <div key={khuonNumber} className="input-row">
