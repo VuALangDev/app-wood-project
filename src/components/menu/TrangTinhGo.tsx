@@ -220,15 +220,17 @@ export const TrangTinhGo = () => {
               <div className="quantity-inputs">
                 {khuonData.map((khuonNumber) => (
                   <div key={khuonNumber} className="input-row">
-                    <input
-                      type="number"
-                      min="0"
-                      step="1"
-                      value={quantitiesByMeter[selectedMeterTab][khuonNumber] || ''}
-                      onChange={(e) => handleQuantityChange(selectedMeterTab, khuonNumber, e.target.value)}
-                      placeholder="0"
-                      className="quantity-input"
-                    />
+                   <input
+                        type="number"
+                        inputMode="numeric" 
+                        pattern="[0-9]*"   
+                        min="0"
+                        step="1"
+                        value={quantitiesByMeter[selectedMeterTab][khuonNumber] || ''}
+                        onChange={(e) => handleQuantityChange(selectedMeterTab, khuonNumber, e.target.value)}
+                        placeholder="0"
+                        className="quantity-input"
+                      />
                   </div>
                 ))}
               </div>
