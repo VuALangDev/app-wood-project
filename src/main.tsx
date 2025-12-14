@@ -1,7 +1,7 @@
 // File: src/main.jsx
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter } from 'react-router-dom'  // ← CHỈ CÓ Ở ĐÂY
+import { HashRouter } from 'react-router-dom' 
 import App from './App'
 import './index.css'
 

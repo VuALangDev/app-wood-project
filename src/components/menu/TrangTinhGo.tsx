@@ -8,7 +8,7 @@ import {
 } from '../../utils/woodCalculator';
 
 export const TrangTinhGo = () => {
-  // ========== STATE ==========
+
   
   const [selectedDau, setSelectedDau] = useState<string>('Đ2');
   const allDau = ['Đ2', 'Đ3', 'Đ4', 'Đ5', 'Đ6', 'Đ7', 'Đ8', 'Đ9', 'Đ10', 'Đ11', 'Đ12'];
@@ -43,9 +43,8 @@ export const TrangTinhGo = () => {
     return initial;
   });
   
-  // ========== FUNCTIONS ==========
   
-  // 1. Tính tổng TẤT CẢ CÁC MÉT cho từng đầu (QUAN TRỌNG)
+  // Tính tổng TẤT CẢ CÁC MÉT cho từng đầu 
   const calculateAllMetersTotalForDau = (dau: string): number => {
     let total = 0;
     meterOptions.forEach(meter => {
@@ -53,8 +52,9 @@ export const TrangTinhGo = () => {
     });
     return total;
   };
-  
-  // 2. Tính tổng CHUNG tất cả các đầu và tất cả các mét
+
+
+  //  Tính tổng CHUNG tất cả các đầu và tất cả các mét
   const calculateGrandTotalAll = (): number => {
     let grandTotal = 0;
     allDau.forEach(dau => {
@@ -63,7 +63,6 @@ export const TrangTinhGo = () => {
     return grandTotal;
   };
   
-  // 3. Các hàm hiện có giữ nguyên
   const generateKhuonData = (dau: string): number[] => {
     const dauNumber = parseInt(dau.replace('Đ', ''));
     const startNumber = dauNumber * 10;
@@ -144,7 +143,6 @@ export const TrangTinhGo = () => {
     }
   };
   
-  // ========== RENDER ==========
   
   return (
     <div className="container">
@@ -258,7 +256,6 @@ export const TrangTinhGo = () => {
         </button>
       </div>
       
-      {/* ========== PHẦN 1: TỔNG THEO MÉT HIỆN TẠI ========== */}
       <div className="dau-totals-section">
         <div className="total-header-row">
           <div className="total-title">TỔNG CÁC ĐẦU GỖ ({selectedMeterTab}m)</div>
@@ -306,7 +303,7 @@ export const TrangTinhGo = () => {
         </div>
       </div>
       
-      {/* ========== PHẦN 2: TỔNG TẤT CẢ CÁC MÉT ========== */}
+      {/* ==========TỔNG TẤT CẢ CÁC MÉT ========== */}
       <div className="dau-totals-section all-meters-total">
         <div className="total-header-row">
           <div className="total-title">TỔNG TẤT CẢ CÁC MÉT</div>

@@ -19,7 +19,6 @@ body {
   
 }
 
-/* ========== HEADER ========== */
 .header-app {
   display: flex;
   justify-content: space-between;
@@ -56,14 +55,13 @@ body {
   font-weight: 500;
 }
 
-/* ========== METER SELECTION (COMBOBOX) ========== */
 .meter-selection-section {
   width: 100%;
   max-width: 500px;
   margin: 0 auto 15px;
   background-color: white;
   border-radius: 10px;
-  overflow: visible; /* QUAN TRỌNG: thay từ hidden thành visible */
+  overflow: visible; 
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 100;
@@ -178,7 +176,6 @@ body {
   border-radius: 3px;
 }
 
-/* ========== ĐẦU GỖ (2 HÀNG) ========== */
 .header-app-container {
   width: 100%;
   max-width: 500px;
@@ -238,7 +235,6 @@ body {
   transition: transform 0.1s;
 }
 
-/* ========== CALCULATOR (3 CỘT) ========== */
 .calculator-section {
   width: 100%;
   max-width: 500px;
@@ -310,7 +306,6 @@ body {
   background-color: #ffe8e8;
 }
 
-/* Khuôn list */
 .khuon-list {
   flex: 1;
   display: grid;
@@ -405,7 +400,6 @@ body {
   color: #2c3e50;
 }
 
-/* Đảm bảo các ô thẳng hàng */
 .khuon-list,
 .quantity-inputs,
 .result-list {
@@ -421,7 +415,6 @@ body {
   justify-content: center;
 }
 
-/* ========== TỔNG CÁC ĐẦU GỖ ========== */
 .dau-totals-section {
   width: 100%;
   max-width: 500px;
@@ -511,7 +504,6 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* ========== RESPONSIVE ========== */
 @media (max-width: 374px) {
   .header-app-container {
     gap: 6px;
@@ -681,9 +673,7 @@ body {
   color: #ff6b6b;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
-/* File: src/components/menu/TrangTinhGo.css */
 
-/* ========== METER TABS ========== */
 .meter-tabs-container {
   width: 100%;
   max-width: 500px;
@@ -733,12 +723,10 @@ body {
   box-shadow: 0 4px 8px rgba(44, 128, 255, 0.3);
 }
 
-/* Hide scrollbar nhưng vẫn scroll được */
 .meter-tabs-container::-webkit-scrollbar {
   display: none;
 }
 
-/* ========== RESET BUTTON ========== */
 .reset-section {
   width: 100%;
   max-width: 500px;
@@ -769,7 +757,6 @@ body {
   transform: translateY(0);
 }
 
-/* ========== METER TOTAL ROW ========== */
 .meter-total-row {
   display: flex;
   justify-content: space-between;
@@ -794,7 +781,6 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* ========== UPDATE GRAND TOTAL ROW ========== */
 .grand-total-row {
   display: flex;
   justify-content: space-between;
@@ -819,7 +805,6 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* ========== RESPONSIVE ========== */
 @media (max-width: 374px) {
   .meter-tab {
     padding: 10px 15px;
@@ -841,7 +826,6 @@ body {
   }
 }
 
-/* Landscape mode */
 @media (max-height: 500px) and (orientation: landscape) {
   .meter-tabs-container {
     padding: 8px;
@@ -853,9 +837,6 @@ body {
     font-size: 14px;
   }
 }
-/* File: TrangTinhGo.css */
-
-/* ========== TỔNG TẤT CẢ CÁC MÉT ========== */
 .all-meters-total {
   margin-top: 15px;
   border: 2px solid #ff6b6b;
@@ -877,7 +858,6 @@ body {
   font-weight: bold;
 }
 
-/* ========== SPACING ========== */
 .dau-totals-section {
   margin-bottom: 15px;
 }
@@ -886,7 +866,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* ========== RESPONSIVE ========== */
 @media (max-width: 374px) {
   .dau-totals-section {
     margin-bottom: 10px;
