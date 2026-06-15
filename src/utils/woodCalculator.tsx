@@ -21,8 +21,6 @@ export const calculateBaseValue = (
 };
 
 
- /* Tính kết quả cho 1 khuôn
- */
 export const calculateKhuonResult = (
   khuonNumber: number,
   quantity: number,
@@ -34,9 +32,6 @@ export const calculateKhuonResult = (
   return baseValue * quantity;
 };
 
-/**
- * Tính tổng cho cả đầu với mét cụ thể
- */
 export const calculateDauTotal = (
   dau: string,
   quantities: { [khuon: number]: string },
@@ -59,9 +54,6 @@ export const calculateDauTotal = (
   return total;
 };
 
-/**
- * Format số (không cần đơn vị tiền)
- */
 export const formatNumber = (amount: number): string => {
   return amount.toLocaleString('vi-VN');
 };

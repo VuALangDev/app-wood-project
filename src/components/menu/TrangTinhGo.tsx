@@ -12,6 +12,14 @@ export const TrangTinhGo = () => {
   
   const [selectedDau, setSelectedDau] = useState<string>('Đ2');
   const allDau = ['Đ2', 'Đ3', 'Đ4', 'Đ5', 'Đ6', 'Đ7', 'Đ8', 'Đ9', 'Đ10', 'Đ11', 'Đ12'];
+  const [showPriceTable, setShowPriceTable] = useState<boolean>(false);
+  const [priceByDau, setPriceByDau] = useState<{ [dau: string]: string }>(() => {
+    const initial: { [dau: string]: string } = {};
+    allDau.forEach(dau => {
+      initial[dau] = '';
+    });
+    return initial;
+  });
   
   const meterOptions = ['2.6', '3.9', '5.2', '1.3', '1', '2', '3'];
   const [selectedMeterTab, setSelectedMeterTab] = useState<string>('2.6');
@@ -108,6 +116,24 @@ export const TrangTinhGo = () => {
   const handleSelectMeterTab = (meter: string) => {
     setSelectedMeterTab(meter);
   };
+
+  const handlePriceChange = (dau: string, value: string) => {
+    setPriceByDau(prev => ({
+      ...prev,
+      [dau]: value
+    }));
+  };
+
+  const calculatePriceResult = (dau: string): number => {
+    const total = calculateAllMetersTotalForDau(dau);
+    const price = parseFloat(priceByDau[dau] || '0') || 0;
+    return total * price;
+  };
+
+  const visiblePriceDaus = allDau.filter((dau) => calculateAllMetersTotalForDau(dau) > 0);
+  const calculateTotalPrice = (): number => {
+    return visiblePriceDaus.reduce((sum, dau) => sum + calculatePriceResult(dau), 0);
+  };
   
   const getKhuonResult = (khuonNumber: number): number => {
     const quantity = parseFloat(quantitiesByMeter[selectedMeterTab][khuonNumber] || '0') || 0;
@@ -140,13 +166,19 @@ export const TrangTinhGo = () => {
         });
       });
       setDauTotalsByMeter(resetTotals);
+
+      const resetPrices: { [dau: string]: string } = {};
+      allDau.forEach(dau => {
+        resetPrices[dau] = '';
+      });
+      setPriceByDau(resetPrices);
+      setShowPriceTable(false);
     }
   };
   
   
   return (
     <div className="container">
-      {/* Header */}
       <div className="header-app">
         <div className="app-title">
           <p>MÁY TÍNH GỖ</p>
@@ -157,7 +189,6 @@ export const TrangTinhGo = () => {
         </div>
       </div>
       
-      {/* Phần các đầu Đ2-Đ12 */}
       <div className="header-app-container">
         <div className="header-app-number-row">
           {allDau.slice(0, 6).map((dau) => (
@@ -184,7 +215,6 @@ export const TrangTinhGo = () => {
         </div>
       </div>
       
-      {/* Tabs cho từng mét */}
       <div className="meter-tabs-container">
         <div className="meter-tabs-scroll">
           {meterOptions.map((meter) => (
@@ -199,7 +229,6 @@ export const TrangTinhGo = () => {
         </div>
       </div>
       
-      {/* Phần Calculator */}
       <div className="calculator-section">
         <div className="calculator-wrapper">
           <div className="calculator-columns">
@@ -251,7 +280,6 @@ export const TrangTinhGo = () => {
         </div>
       </div>
       
-      {/* Nút Reset */}
       <div className="reset-section">
         <button className="reset-btn" onClick={resetAllData}>
           XÓA TẤT CẢ DỮ LIỆU
@@ -304,8 +332,7 @@ export const TrangTinhGo = () => {
           </div>
         </div>
       </div>
-      
-      {/* ==========TỔNG TẤT CẢ CÁC MÉT ========== */}
+
       <div className="dau-totals-section all-meters-total">
         <div className="total-header-row">
           <div className="total-title">TỔNG TẤT CẢ CÁC MÉT</div>
@@ -352,6 +379,86 @@ export const TrangTinhGo = () => {
           </div>
         </div>
       </div>
+
+      <div className="price-table-toggle-section">
+        <button
+          className="price-table-toggle-btn"
+          onClick={() => setShowPriceTable(prev => !prev)}
+        >
+          {showPriceTable ? 'ẨN BẢNG TÍNH GIÁ' : 'TÍNH GIÁ TỪ TỔNG CÁC ĐẦU'}
+        </button>
+      </div>
+
+      {showPriceTable && (
+        <div className="calculator-section price-table-section">
+          <div className="calculator-wrapper">
+            {visiblePriceDaus.length === 0 ? (
+              <div className="price-table-empty">Chưa có đầu nào có tổng dữ liệu để tính giá.</div>
+            ) : (
+              <div className="calculator-columns price-table-columns">
+                <div className="calc-part-1 price-table-part">
+                  <div className="calc-title">ĐẦU</div>
+                  <div
+                    className="khuon-list price-table-list"
+                    style={{ gridTemplateRows: `repeat(${visiblePriceDaus.length}, auto)` }}
+                  >
+                    {visiblePriceDaus.map((dau) => (
+                      <div key={dau} className="khuon-item price-table-item">
+                        <span>{dau}:</span>
+                        <strong>{formatNumber(calculateAllMetersTotalForDau(dau))}</strong>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="calc-part-2 price-table-part">
+                  <div className="calc-title">GIÁ TIỀN</div>
+                  <div
+                    className="quantity-inputs price-table-inputs"
+                    style={{ gridTemplateRows: `repeat(${visiblePriceDaus.length}, auto)` }}
+                  >
+                    {visiblePriceDaus.map((dau) => (
+                      <div key={dau} className="input-row">
+                        <input
+                          type="number"
+                          inputMode="numeric"
+                          pattern="[0-9]*"
+                          min="0"
+                          step="1"
+                          value={priceByDau[dau] || ''}
+                          onChange={(e) => handlePriceChange(dau, e.target.value)}
+                          placeholder="0"
+                          className="quantity-input"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="calc-part-3 price-table-part">
+                  <div className="calc-title">KẾT QUẢ</div>
+                  <div
+                    className="result-list price-table-results"
+                    style={{ gridTemplateRows: `repeat(${visiblePriceDaus.length}, auto)` }}
+                  >
+                    {visiblePriceDaus.map((dau) => (
+                      <div key={dau} className="result-item price-table-result-item">
+                        {formatNumber(calculatePriceResult(dau))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+            {visiblePriceDaus.length > 0 && (
+              <div className="price-total-row">
+                <div className="price-total-label">Tổng tiền:</div>
+                <div className="price-total-value">{formatNumber(calculateTotalPrice())}</div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
