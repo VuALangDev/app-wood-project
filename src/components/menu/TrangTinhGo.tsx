@@ -399,10 +399,7 @@ export const TrangTinhGo = () => {
               <div className="calculator-columns price-table-columns">
                 <div className="calc-part-1 price-table-part">
                   <div className="calc-title">ĐẦU</div>
-                  <div
-                    className="khuon-list price-table-list"
-                    style={{ gridTemplateRows: `repeat(${visiblePriceDaus.length}, auto)` }}
-                  >
+                  <div className="khuon-list price-table-list">
                     {visiblePriceDaus.map((dau) => (
                       <div key={dau} className="khuon-item price-table-item">
                         <span>{dau}:</span>
@@ -414,10 +411,7 @@ export const TrangTinhGo = () => {
 
                 <div className="calc-part-2 price-table-part">
                   <div className="calc-title">GIÁ TIỀN</div>
-                  <div
-                    className="quantity-inputs price-table-inputs"
-                    style={{ gridTemplateRows: `repeat(${visiblePriceDaus.length}, auto)` }}
-                  >
+                  <div className="quantity-inputs price-table-inputs">
                     {visiblePriceDaus.map((dau) => (
                       <div key={dau} className="input-row">
                         <input
@@ -438,10 +432,7 @@ export const TrangTinhGo = () => {
 
                 <div className="calc-part-3 price-table-part">
                   <div className="calc-title">KẾT QUẢ</div>
-                  <div
-                    className="result-list price-table-results"
-                    style={{ gridTemplateRows: `repeat(${visiblePriceDaus.length}, auto)` }}
-                  >
+                  <div className="result-list price-table-results">
                     {visiblePriceDaus.map((dau) => (
                       <div key={dau} className="result-item price-table-result-item">
                         {formatNumber(calculatePriceResult(dau))}

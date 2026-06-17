@@ -361,6 +361,7 @@ body {
   color: #333;
   background-color: #fff;
   transition: all 0.2s;
+  appearance: textfield;
   -webkit-appearance: none;
   -moz-appearance: textfield;
 }
@@ -543,7 +544,8 @@ body {
 .price-table-inputs,
 .price-table-results {
   flex: none;
-  grid-auto-rows: auto;
+  grid-template-rows: none;
+  grid-auto-rows: 44px;
 }
 
 .price-table-columns {
@@ -559,25 +561,34 @@ body {
 .price-table-item {
   flex-direction: row;
   justify-content: space-between;
-  gap: 8px;
-  padding: 6px 10px;
+  gap: 4px;
+  padding: 0 10px;
   line-height: 1.15;
   text-align: left;
+  min-height: 44px;
 }
 
 .price-table-item span {
+  min-width: 0;
   white-space: nowrap;
 }
 
 .price-table-item strong {
-  font-size: 15px;
+  font-size: 14px;
   color: #ff6b6b;
+  min-width: 0;
   white-space: nowrap;
 }
 
 .price-table-result-item {
   font-weight: bold;
   color: #2c3e50;
+}
+
+.price-table-item,
+.price-table-result-item,
+.price-table-part .input-row {
+  min-height: 48px;
 }
 
 .price-table-empty {
@@ -696,7 +707,34 @@ body {
   .price-table-section .calc-part-1,
   .price-table-section .calc-part-2,
   .price-table-section .calc-part-3 {
-    min-height: 480px;
+    min-height: auto;
+  }
+
+  .price-table-list,
+  .price-table-inputs,
+  .price-table-results {
+    grid-template-rows: none;
+    grid-auto-rows: 40px;
+  }
+
+  .price-table-item,
+  .price-table-result-item,
+  .price-table-part .input-row {
+    min-height: 40px;
+  }
+
+  .price-table-item {
+    padding: 0 8px;
+    gap: 2px;
+  }
+
+  .price-table-item strong {
+    font-size: 13px;
+  }
+
+  .price-table-section .quantity-input {
+    width: 100% !important;
+    max-width: 84px;
   }
 }
 
